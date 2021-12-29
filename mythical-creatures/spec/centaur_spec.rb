@@ -1,5 +1,6 @@
-require './spec/spec-helper'
+# require './spec/spec-helper'
 require './lib/centaur'
+require 'pry'
 
 RSpec.describe Centaur do
   it 'has a name' do
@@ -103,7 +104,7 @@ RSpec.describe Centaur do
 
     centaur.lay_down
     centaur.sleep
-
+# binding.pry
     expect(centaur.cranky?).to be false
 
     centaur.stand_up
@@ -113,14 +114,31 @@ RSpec.describe Centaur do
   end
 
   it 'becomes rested after drinking a potion' do
-    # your code here
+    centaur = Centaur.new('George', 'Palomino')
+
+    centaur.shoot
+    centaur.run
+    centaur.shoot
+    centaur.drink_potion
+    expect(centaur.cranky?).to be false
   end
 
   it 'can only drink a potion whilst standing' do
-    # your code here
+    centaur = Centaur.new('George', 'Palomino')
+
+    centaur.shoot
+    centaur.run
+    centaur.shoot
+    centaur.lay_down
+    expect(centaur.drink_potion).to eq("can't drink will laying down")
   end
 
   it 'gets stick if a potion is drunk while rested' do
-    # your code here
+    centaur = Centaur.new('George', 'Palomino')
+
+    centaur.shoot
+    centaur.run
+    centaur.drink_potion
+    expect(centaur.drunk).to be true
   end
 end

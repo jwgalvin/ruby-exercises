@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/wizard'
+require 'pry'
 
 RSpec.describe Wizard do
   it 'has a name' do
@@ -21,7 +22,7 @@ RSpec.describe Wizard do
     wizard = Wizard.new('Valerie', bearded: false)
     expect(wizard.bearded?).to be false
   end
-
+  #
   it 'has root powers' do
     wizard = Wizard.new('Stella', bearded: false)
     expect(wizard.incantation('chown ~/bin')).to eq('sudo chown ~/bin')
@@ -35,11 +36,15 @@ RSpec.describe Wizard do
   it 'starts rested' do
     # create wizard
     # .rested? returns true
+    wizard = Wizard.new('Sal', bearded: true)
+    expect(wizard.rested?).to be(true)
   end
 
   it 'can cast spells' do
     # create wizard
     # .cast returns "MAGIC MISSILE!"
+    wizard = Wizard.new('Sal', bearded: true)
+    expect(wizard.cast).to eq('MAGIC MISSLE!')
   end
 
   it 'gets tired after casting three spells' do
@@ -48,5 +53,14 @@ RSpec.describe Wizard do
     # check if wizard is rested
     # casts spell
     # check wizard is not rested
+    wizard = Wizard.new('Sal', bearded: true)
+
+    2.times do wizard.cast
+    end
+ #binding.pry
+    expect(wizard.rested?).to be(true)
+
+    wizard.cast
+    expect(wizard.rested?).to be(false)
   end
 end

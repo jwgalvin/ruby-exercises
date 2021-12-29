@@ -1,5 +1,7 @@
-require './spec/spec-helper'
+#require './spec/spec-helper'
 require './lib/ogre'
+require './lib/human'
+require 'pry'
 
 RSpec.describe Ogre do
   it 'has a name' do
@@ -24,7 +26,6 @@ RSpec.describe Ogre do
     expect(human.name).to eq('Jane')
 
     ogre.encounter(human)
-
     expect(human.encounter_counter).to eq(1)
   end
 
@@ -37,7 +38,7 @@ RSpec.describe Ogre do
     expect(human.notices_ogre?).to be false
 
     ogre.encounter(human)
-
+#binding.pry
     expect(human.notices_ogre?).to be true
   end
 
